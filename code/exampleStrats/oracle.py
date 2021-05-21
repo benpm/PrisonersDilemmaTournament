@@ -47,7 +47,6 @@ def strategy(history: np.ndarray, memory):
 	if turn > N + 1:
 		last_play = history[0, -1]
 		if turn == N + 2:
-			print(n_def)
 			if n_def <= 1:
 				naughtiness = -1
 
@@ -82,20 +81,16 @@ def strategy(history: np.ndarray, memory):
 			pred = 0
 		last_prediction = pred
 
-		if test > 0: print("test", test)
-
 		if test == 1:
 			# We're testing to see if this player is titfortat-like
 			if history[1, -1] == 0:
 				# Probably
 				naughtiness = -5
 				test = -2
-				print("test says tat")
 				play = 1
 			else:
 				# No
 				test = -1
-				print("test says no tat")
 				play = pred
 		else:
 			if test == 3:
