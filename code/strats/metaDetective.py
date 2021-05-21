@@ -25,7 +25,7 @@ def s_jos(H: np.ndarray, M): # Joss with high probability
     return 0 if np.random.random() < 0.15 else s_t4t(H,M)[0], None
 
 DEFAULT_STRAT = s_def
-X_T4T = s_ant
+X_T4T = s_ant # Strategy to use for tit-for-tat-likes
 
 TEST_PATTERN = (1,0,0,1,1)
 PATTERN_FILE = open("md.txt", "w")
