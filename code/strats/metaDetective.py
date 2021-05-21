@@ -69,9 +69,7 @@ def s_los(H: np.ndarray, M): # like joss with low probability
 DEFAULT_STRAT = s_def
 
 TEST_PATTERN = (1,0,0,1,1)
-TEST_MODE = True
-if TEST_MODE:
-    PATTERN_FILE = open("md.txt", "w")
+TEST_MODE = False
 PATTERNS = {
     (1,1,1,0,1): s_alt, # [ftft]
     (1,1,0,0,0): s_def, # [grimTrigger]
@@ -93,7 +91,6 @@ def strategy(history: np.ndarray, memory):
 
         if TEST_MODE and turn == len(TEST_PATTERN):
             print(R, end="")
-            PATTERN_FILE.write(f"({','.join([str(r) for r in R])})\n")
         if R in PATTERNS:
             return PATTERNS[R](history, memory)
         else:
