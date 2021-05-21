@@ -73,6 +73,8 @@ def tallyRoundScores(history):
     return scoreA/ROUND_LENGTH, scoreB/ROUND_LENGTH
     
 def outputRoundResults(f, pair, roundHistory, scoresA, scoresB):
+    if ME not in pair:
+        return
     f.write(pair[0]+" (P1)  VS.  "+pair[1]+" (P2)\n")
     for p in range(2):
         for t in range(roundHistory.shape[1]):
@@ -103,7 +105,7 @@ def runFullPairingTournament(inFolders, outFile):
         paths = S[0][1], S[1][1]
         if ME in pair:
             j += 1
-            print(f" {j}: ", end='')
+            print(f" {j:>2}: ", end='')
         roundHistory = runRound(paths, pair)
         scoresA, scoresB = tallyRoundScores(roundHistory)
         if ME in pair:

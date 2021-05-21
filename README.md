@@ -1,4 +1,8 @@
-# PrisonersDilemmaTournament
+# PrisonersDilemmaTournament benpm's fork
+
+## Added
+- oracle: bad
+- metaDetective: it does okay
 
 This is my CS 269i class project.
 
