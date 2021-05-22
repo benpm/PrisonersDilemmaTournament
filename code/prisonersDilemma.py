@@ -89,6 +89,7 @@ def runFullPairingTournament(inFolders, outFile):
     print("Starting tournament, reading files from", inFolders)
     print(ME)
     scoreKeeper = {}
+    scoreAvgDiff = {}
     strats = []
     for folder in inFolders:
         for file in os.listdir(folder):
@@ -97,6 +98,7 @@ def runFullPairingTournament(inFolders, outFile):
             
     for strategy, _ in strats:
         scoreKeeper[strategy] = 0
+        scoreAvgDiff[strategy] = 0
     
     f = open(outFile,"w+")
     j = 0
@@ -115,6 +117,15 @@ def runFullPairingTournament(inFolders, outFile):
         outputRoundResults(f, pair, roundHistory, scoresA, scoresB)
         scoreKeeper[pair[0]] += scoresA
         scoreKeeper[pair[1]] += scoresB
+        scoreAvgDiff[pair[0]] += scoresA - scoresB
+        scoreAvgDiff[pair[1]] += scoresB - scoresA
+
+    for name, _ in strats:
+        scoreAvgDiff[name] /= len(strats)
+    S = sorted(scoreAvgDiff.keys(), key=lambda k: scoreAvgDiff[k], reverse=True)
+
+    for name in S:
+        print(f"{name:<24}: {scoreAvgDiff[name]}")
         
     scoresNumpy = np.zeros(len(scoreKeeper))
     for i in range(len(strats)):
